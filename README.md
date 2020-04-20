@@ -1,4 +1,4 @@
-# toms-portfolio-vue
+# toms-portfolio
 
 ## Project setup
 ```
