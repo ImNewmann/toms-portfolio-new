@@ -62,7 +62,7 @@ export default {
     padding: 120px 20px 20px;
 
     @include breakpoint(desktop) {
-      padding: 200px 20px 20px;
+      padding: 180px 20px 20px;
     }
   }
 
