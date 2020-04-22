@@ -42,14 +42,14 @@ const router = new Router({
 });
 
 router.afterEach((to) => { // (to, from)
-  // Add a body class specific to the route we're viewing
-  let body = document.querySelector('body');
+  let path = to.path === '/' ? 'Creative Director' : to.path;
   if (to.path !== '/') {
-    body.classList.add('page');
+    document.body.classList.add('page');
+    path = path.slice(1).charAt(0).toUpperCase() + path.slice(2).split('-').join(' ');
   } else {
-    body.classList.remove('page');
+    document.body.classList.remove('page');
   }
-  
+  document.title = `Tom Newman - ${path}`
 });
 
 export default router;

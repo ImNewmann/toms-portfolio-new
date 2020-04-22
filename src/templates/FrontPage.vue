@@ -17,6 +17,7 @@ export default {
 
 <style lang="scss">
 .posts {
+  margin: 0 auto;
   width: 100vw;
 }
 </style>
