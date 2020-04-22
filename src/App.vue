@@ -7,7 +7,7 @@
       <Navbar v-if="loadContent" :posts="posts" />
     </transition>
     <transition name="page" appear>
-        <router-view v-if="loadContent" :posts="posts"></router-view>
+        <router-view v-if="loadContent" :posts="posts" :key="$route.path"></router-view>
     </transition>
     <Footer v-if="loadContent" />
   </div>
@@ -28,10 +28,18 @@ export default {
     Navbar,
     Footer,
   },
+
   data: () => ({
     loadContent: false,
     posts: [],
   }),
+
+  metaInfo: {
+    // if no subcomponents specify a metaInfo.title, this title will be used
+    title: 'Creative Director | Tom Newman',
+    // all titles will be injected into this template
+    titleTemplate: '%s | Tom Newman'
+  },
 
   async created () {
     await this.getPosts();

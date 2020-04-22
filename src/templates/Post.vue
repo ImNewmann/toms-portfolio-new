@@ -1,10 +1,10 @@
 <template>
   <main class="post-page">
     <div class="post-page__inner">
-      <h1 class="post-page__title">{{ post.title.rendered }}</h1>
+      <h1 class="post-page__title" v-html="post.title.rendered"></h1>
       <Video :html="post.acf.video" />
       <div class="post-details">
-        <Carousel :images="post.acf.carousel_images" />
+        <Carousel v-if="post.acf.carousel_images" :images="post.acf.carousel_images" />
         <div class="post-details__text">
           <p class="post-details__text-title">{{ post.acf.title }}</p>
           <div class="post-details__text-credits">
@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import { formatTitle } from '@/utilities/formatTitle.js'
 import Video from '@/components/Video';
 import Carousel from '@/components/Carousel';
 
@@ -28,15 +29,24 @@ export default {
   props: {
     posts: { type: Array, required: true },
   },
-  data:() => ({
-    post: [],
-  }),
   components: {
     Video,
     Carousel,
   },
+  data: () => ({
+    post: [],
+    title: null,
+  }),
+
+  metaInfo() {
+    return {
+      title: this.title,
+    }
+  },
+
   created() {
     const currentRoute = this.$router.currentRoute.params.postSlug;
+    this.title = formatTitle(currentRoute);
     this.post = this.posts.filter(post => post.slug === currentRoute)[0];
   },
 }

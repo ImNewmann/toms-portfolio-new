@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import VueMeta from 'vue-meta'
 
 // Components
 import FrontPage from '@/templates/FrontPage.vue';
@@ -7,6 +8,7 @@ import Post from '@/templates/Post.vue';
 import Contact from '@/templates/Contact.vue';
 
 Vue.use(Router);
+Vue.use(VueMeta)
 
 const router = new Router({
   routes: [
@@ -42,14 +44,14 @@ const router = new Router({
 });
 
 router.afterEach((to) => { // (to, from)
-  let path = to.path === '/' ? 'Creative Director' : to.path;
+  // let path = to.path === '/' ? 'Creative Director' : to.path;
   if (to.path !== '/') {
     document.body.classList.add('page');
-    path = path.slice(1).charAt(0).toUpperCase() + path.slice(2).split('-').join(' ');
+    // path = path.slice(1).charAt(0).toUpperCase() + path.slice(2).split('-').join(' ');
   } else {
     document.body.classList.remove('page');
   }
-  document.title = `Tom Newman - ${path}`
+  // document.title = `Tom Newman - ${path}`
 });
 
 export default router;
