@@ -49,6 +49,7 @@ export default {
 <style lang="scss">
 .nav {
   position: fixed;
+  top: 0;
   padding: 20px;
   width: 100%;
   z-index: 1000;
@@ -59,7 +60,7 @@ export default {
 
   &__inner {
     display: flex;
-    max-width: 1368px;
+    max-width: 1400px;
     margin: 0 auto;
     justify-content: space-between;
   }

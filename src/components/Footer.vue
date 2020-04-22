@@ -1,6 +1,8 @@
 <template>
   <footer class="footer">
-    <p>tom@tomnewman.eu  / +44 7495718055</p>
+    <a href="mailto:tom@tomnewman.eu">tom@tomnewman.eu</a>
+    <span> / </span>
+    <a href="tel:+447495718055">+447495718055</a>
   </footer>
 </template>
 
@@ -12,10 +14,21 @@ export default {
 
 <style lang="scss">
 .footer {
-  background: transparent;
-  padding: 50px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: black;
+  padding: 20px;
   text-align: center;
   font-family: $font-family-content;
-  color: $black;
+  color: $white;
+
+  .page & {
+    background-color: $white;
+    color: $black;
+  }
+  span {
+    padding: 0 10px;
+  }
 }
 </style>

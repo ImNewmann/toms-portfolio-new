@@ -8,9 +8,7 @@
         <div class="nav-overlay__dropdown-links">
           <ul>
             <li v-for="(post, index) in narrativePosts" :key="index" @click="linkClicked">
-              <router-link :to="'/' + post.slug">
-                {{ post.title.rendered }}
-              </router-link>
+              <router-link :to="'/' + post.slug" v-html="post.title.rendered" />
             </li>
           </ul>
         </div>
@@ -22,9 +20,7 @@
         <div class="nav-overlay__dropdown-links">
           <ul>
             <li v-for="(post, index) in promoPosts" :key="index" @click="linkClicked">
-              <router-link :to="'/' + post.slug">
-                {{ post.title.rendered }}
-              </router-link>
+              <router-link :to="'/' + post.slug" v-html="post.title.rendered" />
             </li>
           </ul>
         </div>

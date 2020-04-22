@@ -19,5 +19,6 @@ export default {
 .posts {
   margin: 0 auto;
   width: 100vw;
+  padding-bottom: 65px;
 }
 </style>

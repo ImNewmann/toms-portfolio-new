@@ -1,5 +1,8 @@
 <template>
-  <TinyLogo class="v-logo" />
+  <div class="loading">
+    <TinyLogo class="loading__logo" />
+  </div>
+  
 </template>
 
 <script>
@@ -13,18 +16,20 @@ export default {
 </script>
 
 <style lang="scss">
-.v-logo {
-  position: absolute;
+.loading {
+  position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
   width: 100px;
-  animation: letter-animation 3s infinite;
-  transition: fill 1s ease;
 
-  .loaded & {
-    fill: $white;
-    animation-play-state: paused;
+  &__logo {
+    animation: letter-animation 3s infinite;
+    transition: fill 1s ease;
+
+    .loaded & {
+      fill: $white;
+      animation-play-state: paused;
+    }
   }
 }
 
@@ -43,12 +48,15 @@ export default {
   }
 }
 
-@keyframes loaded {
-  0% {
-    opacity: 0.8;
-  }
-  100% {
-    opacity: 1;
-  }
+.loading-enter {
+  opacity: 0;
+}
+.loading-enter-to {
+  opacity: 1;
+  transition: opacity 0.6s ease;
+}
+.loading-leave-active {
+  opacity: 0;
+  transition: opacity 0.6s ease;
 }
 </style>

@@ -1,9 +1,8 @@
 <template>
-  <div class="post-thumbnail">
-    <router-link :to="'/' + postData.slug">
-      <img :src="postData.acf.featured_image.url" :alt="postData.acf.featured_image" />
-    </router-link>
-  </div>
+  <router-link class="post-thumbnail" :to="'/' + postData.slug">
+    <img class="post-thumbnail__image" :src="postData.acf.featured_images.image.url" :alt="postData.acf.featured_images.image.alt" />
+    <img class="post-thumbnail__image" :src="postData.acf.featured_images.image_2.url" :alt="postData.acf.featured_images.image_2.alt" />
+  </router-link>
 </template>
 
 <script>
@@ -22,7 +21,31 @@ export default {
 .post-thumbnail {
   cursor: pointer;
   width: 100%;
+  display: flex;
+  flex-direction: row;
   transition: filter 0.6s ease;
+
+  &__image {
+    width: 100%;
+
+    @include breakpoint(desktop) {
+      width: 50%;
+    }
+
+    &:last-of-type {
+      display: none;
+
+      @include breakpoint(desktop) {
+        display: block;
+      }
+    }
+  }
+
+  &:nth-child(odd) {
+    .post-thumbnail__image:first-of-type {
+      order: 2;
+    }
+  }
 
   &:hover {
     filter: grayscale(100%);
