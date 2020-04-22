@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import { endPoint } from '@/constants/endpoint.js';
 import TitleAndText from '@/components/TitleAndText';
 
@@ -20,19 +21,24 @@ export default {
   data: () => ({
     page: [],
   }),
-  async created() {
+  async created () {
     const slug = this.$router.currentRoute.path.slice(1);
-    const response = await fetch(`${endPoint}/pages?slug=${slug}`);
-    const responseData = await response.json()
-    this.page = responseData;
-  },
+    await axios.get(`${endPoint}/pages?slug=${slug}`).then(res => {
+      console.log('got page data');
+      this.page = res.data;
+    });
+  }
 }
 </script>
 <style lang="scss">
 .about-page {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 200px 20px 20px;
+  padding: 150px 20px 20px;
+
+  @include breakpoint(desktop) {
+    padding: 200px 20px 20px;
+  }
 
   &__title {
     font-family: $font-family-title;

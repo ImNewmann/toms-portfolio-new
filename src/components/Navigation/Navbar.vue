@@ -17,6 +17,7 @@ import CloseIcon from '@/components/Navigation/CloseIcon';
 import NavOverlay from '@/components/Navigation/NavOverlay';
 import Logo from '@/assets/svg/main-logo.svg';
 
+
 export default {
   name: 'Navbar',
   props: {
@@ -72,6 +73,17 @@ export default {
       }
     }
   }
+}
+
+.nav-enter {
+  transform: translateY(-20px);
+  opacity: 0;
+}
+
+.nav-enter-to {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.4s $bezierCurve;
 }
 
 </style>

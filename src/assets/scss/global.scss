@@ -1,6 +1,8 @@
 body {
-  background-color: $black;
   transition: background-color 0.3s ease;
+  &.loaded {
+    background-color: $black;
+  }
 
   &.page {
     background-color: $white;

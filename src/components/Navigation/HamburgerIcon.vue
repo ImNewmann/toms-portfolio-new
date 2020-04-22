@@ -47,7 +47,7 @@ export default {
     width: 100%;
     margin-bottom: 15px;
     background-color: $white;
-    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: all 0.3s $bezierCurve;
 
     .page & {
       background-color: $black;
