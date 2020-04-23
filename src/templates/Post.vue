@@ -5,14 +5,7 @@
       <Video :html="post.acf.video" />
       <div class="post-details">
         <Carousel v-if="post.acf.carousel_images" :images="post.acf.carousel_images" />
-        <div class="post-details__text">
-          <p class="post-details__text-title">{{ post.acf.title }}</p>
-          <div class="post-details__text-credits">
-            <p>{{ post.acf.director }}</p>
-            <p>{{ post.acf.editor }}</p>
-            <p>{{ post.acf.producer }}</p>
-          </div>
-          <p class="post-details__text-title"><i>{{ post.acf.description }}</i></p>
+        <div class="post-details__text" v-html="post.acf.details">
         </div>
       </div>
     </div>
@@ -94,10 +87,6 @@ export default {
       display: inline-block;
       padding-left: 20px;
       width: calc(35% - 20px);
-    }
-
-    &-credits {
-      margin: 20px 0;
     }
   }
 }
