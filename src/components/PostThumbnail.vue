@@ -21,9 +21,12 @@ export default {
 .post-thumbnail {
   cursor: pointer;
   width: 100%;
-  display: flex;
-  flex-direction: row;
   transition: filter 0.6s ease;
+
+  @include breakpoint(desktop) {
+    display: flex;
+    flex-direction: row;
+  }
 
   &__image {
     width: 100%;
