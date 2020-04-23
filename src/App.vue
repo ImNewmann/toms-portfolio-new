@@ -43,14 +43,19 @@ export default {
 
   async created () {
     await this.getPosts();
-    const imagesToLoad = this.getProjectImages();
+    document.body.classList.add('loaded');
+    setTimeout(() => {
+      this.loadContent = true;
+    }, 1500)
 
-    Promise.all(imagesToLoad.map(this.preloadImages)).then(() => {
-      document.body.classList.add('loaded');
-      setTimeout(() => {
-        this.loadContent = true;
-      }, 2000)
-    });
+    // const imagesToLoad = this.getProjectImages();
+
+    // Promise.all(imagesToLoad.map(this.preloadImages)).then(() => {
+      // document.body.classList.add('loaded');
+      // setTimeout(() => {
+      //   this.loadContent = true;
+      // }, 2000)
+    // });
   },
 
   methods: {

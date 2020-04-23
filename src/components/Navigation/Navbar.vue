@@ -6,7 +6,7 @@
       </router-link>
       <HamburgerIcon @iconClicked="handleMenu" :menu-open="showMenu" />
       <CloseIcon @iconClicked="handleMenu" :menu-open="showMenu" />
-      <NavOverlay @linkClicked="handleMenu" :open="showMenu" :promo-posts="promoPosts" :narrative-posts="narrativePosts" />
+      <NavOverlay v-if="posts.length" @linkClicked="handleMenu" :open="showMenu" :promo-posts="promoPosts" :narrative-posts="narrativePosts" />
     </div>
   </nav>
 </template>
@@ -35,8 +35,8 @@ export default {
     showMenu: false,
   }),
   created() {
-    this.promoPosts = this.posts.filter(post => post.categories[0] === 2);
-    this.narrativePosts = this.posts.filter(post => post.categories[0] === 3);
+    this.promoPosts = this.posts.filter(post => post.categories[0] === 3);
+    this.narrativePosts = this.posts.filter(post => post.categories[0] === 2);
   },
   methods: {
     handleMenu(isOpen) {

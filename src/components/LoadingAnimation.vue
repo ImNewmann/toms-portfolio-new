@@ -24,7 +24,7 @@ export default {
 
   &__logo {
     animation: letter-animation 3s infinite;
-    transition: fill 1s ease;
+    transition: fill 0.4s ease;
 
     .loaded & {
       fill: $white;
@@ -53,10 +53,10 @@ export default {
 }
 .loading-enter-to {
   opacity: 1;
-  transition: opacity 0.6s ease;
+  transition: opacity 0.4s ease;
 }
 .loading-leave-active {
   opacity: 0;
-  transition: opacity 0.6s ease;
+  transition: opacity 0.4s ease;
 }
 </style>
