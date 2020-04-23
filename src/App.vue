@@ -42,29 +42,33 @@ export default {
   },
 
   async created () {
-    await this.getPosts();
-    document.body.classList.add('loaded');
-    setTimeout(() => {
-      this.loadContent = true;
-    }, 1500)
+    this.posts = await this.getPosts();
+    const imagesToLoad = this.getProjectImages();
 
-    // const imagesToLoad = this.getProjectImages();
-
-    // Promise.all(imagesToLoad.map(this.preloadImages)).then(() => {
-      // document.body.classList.add('loaded');
-      // setTimeout(() => {
-      //   this.loadContent = true;
-      // }, 2000)
-    // });
+    Promise.all(imagesToLoad.map(this.preloadImages)).then(() => {
+      document.body.classList.add('loaded');
+      setTimeout(() => {
+        this.loadContent = true;
+      }, 500)
+    });
   },
 
   methods: {
     async getPosts() {
-      await axios.get(`${endPoint}/posts`).then(res => this.posts = res.data);
+      let posts = []
+      await axios.get(`${endPoint}/posts`).then(res => posts = res.data);
+      return posts;
     },
 
     getProjectImages() {
-      return this.posts.map(post => post.acf.featured_images.image.url).concat(this.posts.map(post => post.acf.featured_images.image_2.url));
+      let visibleImages = [];
+      const images = this.posts.map(post => post.acf.featured_images)
+      // 3 Visible projects on screen
+      for (let i = 0; i <= 2; i++) {
+        visibleImages.push(images[i].image.url);
+        visibleImages.push(images[i].image_2.url)
+      }
+      return visibleImages;
     },
 
     preloadImages(path) {
