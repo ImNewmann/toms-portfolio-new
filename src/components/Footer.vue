@@ -25,14 +25,14 @@ export default {
 
 <style lang="scss">
 .footer {
+  position: absolute;
+  bottom: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  position: absolute;
-  bottom: 0;
   width: 100%;
-  background-color: black;
+  background-color: $black;
   padding: 20px;
   text-align: center;
   color: $white;

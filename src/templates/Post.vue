@@ -1,12 +1,10 @@
 <template>
-  <main class="post-page">
-    <div class="post-page__inner">
-      <h1 class="post-page__title" v-html="post.title.rendered"></h1>
-      <Video v-for="(video, index) in post.acf.videos" :key="index" :html="video.video" />
-      <div class="post-details">
-        <Carousel v-if="post.acf.carousel_images" :images="post.acf.carousel_images" />
-        <div class="post-details__text" v-html="post.acf.details">
-        </div>
+  <main class="page-wrapper post-page">
+    <h1 class="post-page__title" v-html="post.title.rendered"></h1>
+    <Video v-for="(video, index) in post.acf.videos" :key="index" :html="video.video" />
+    <div class="post-details">
+      <Carousel v-if="post.acf.carousel_images" :images="post.acf.carousel_images" />
+      <div class="post-details__text" v-html="post.acf.details">
       </div>
     </div>
   </main>
@@ -46,18 +44,6 @@ export default {
 </script>
 <style lang="scss">
 .post-page {
-  width: 100%;
-  padding-bottom: 65px;
-
-  &__inner {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 120px 20px 20px;
-
-    @include breakpoint(desktop) {
-      padding: 180px 20px 20px;
-    }
-  }
 
   &__title {
     font-family: $font-family-title;

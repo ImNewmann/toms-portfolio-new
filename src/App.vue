@@ -7,15 +7,17 @@
       <Navbar v-if="loadContent" :posts="posts" />
     </transition>
     <transition name="page" appear>
+      <keep-alive>
         <router-view v-if="loadContent" :posts="posts" :key="$route.path"></router-view>
+      </keep-alive>
     </transition>
     <Footer v-if="loadContent" />
   </div>
 </template>
 
 <script>
-import axios from 'axios';
 import { endPoint } from '@/constants/endpoint.js';
+import { getData } from '@/utilities/getData.js';
 import LoadingAnimation from '@/components/LoadingAnimation';
 import Navbar from '@/components/Navigation/Navbar';
 import Footer from '@/components/Footer';
@@ -42,7 +44,7 @@ export default {
   },
 
   async created () {
-    this.posts = await this.getPosts();
+    this.posts = await getData('tomnewmanposts', `${endPoint}/posts`);
     const imagesToLoad = this.getProjectImages();
 
     Promise.all(imagesToLoad.map(this.preloadImages)).then(() => {
@@ -54,12 +56,6 @@ export default {
   },
 
   methods: {
-    async getPosts() {
-      let posts = []
-      await axios.get(`${endPoint}/posts`).then(res => posts = res.data);
-      return posts;
-    },
-
     getProjectImages() {
       let visibleImages = [];
       const images = this.posts.map(post => post.acf.featured_images)
