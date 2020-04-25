@@ -20,7 +20,9 @@ import { endPoint } from '@/constants/endpoint.js';
 import TitleAndText from '@/components/TitleAndText';
 
 export default {
-  components: { TitleAndText },
+  components: { 
+    TitleAndText,
+  },
   data: () => ({
     page: [],
   }),
@@ -33,15 +35,14 @@ export default {
 <style lang="scss">
 .about-page {
   width: 100%;
-  padding-bottom: 65px;
 
   &__inner {
     max-width: 1000px;
     margin: 0 auto;
-    padding: 120px 20px 20px;
+    padding: 120px 20px 0;
 
     @include breakpoint(desktop) {
-      padding: 180px 20px 20px;
+      padding: 180px 20px 0;
     }
   }
 

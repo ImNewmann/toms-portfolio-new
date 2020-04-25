@@ -20,7 +20,11 @@ export default {
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 100px;
+  width: 80px;
+
+  @include breakpoint(tablet) {
+    width: 100px;
+  }
 
   &__logo {
     animation: letter-animation 3s infinite;

@@ -1,34 +1,74 @@
 <template>
   <footer class="footer">
-    <a href="mailto:tom@tomnewman.eu">tom@tomnewman.eu</a>
-    <span> / </span>
-    <a href="tel:+447495718055">+447495718055</a>
+    <div class="footer__links">
+      <a href="mailto:tom@tomnewman.eu">tom@tomnewman.eu</a>
+      <span>/</span>
+      <a href="tel:+447495718055">+447495718055</a>
+      <span>/</span>
+    </div>
+    <div class="footer__links">
+      <SocialLinks />
+    </div>
   </footer>
 </template>
 
 <script>
+import SocialLinks from '@/components/SocialLinks';
+
 export default {
-  name: 'Footer'
+  name: 'Footer',
+  components: {
+    SocialLinks,
+  },
 }
 </script>
 
 <style lang="scss">
 .footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   position: absolute;
   bottom: 0;
   width: 100%;
   background-color: black;
   padding: 20px;
   text-align: center;
-  font-family: $font-family-content;
   color: $white;
+
+  @include breakpoint(tablet) {
+    flex-direction: row;
+  }
 
   .page & {
     background-color: $white;
-    color: $black;
   }
-  span {
-    padding: 0 10px;
+
+  &__links {
+    font-family: $font-family-content;
+    color: $white;
+    margin-bottom: 5px;
+
+    @include breakpoint(tablet) {
+      margin-bottom: 0;
+    }
+
+    .page & {
+      color: $black;
+    }
+
+    a {
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: $pink;
+      }
+    }
+
+    span {
+      padding: 0 5px;
+    }
   }
 }
 </style>

@@ -2,6 +2,7 @@
   <div class="title-and-text">
     <h2 class="title"> {{ title }}</h2>
     <div class="text" v-html="text"></div>
+    <slot />
   </div>
 </template>
 
