@@ -2,7 +2,7 @@
   <main class="post-page">
     <div class="post-page__inner">
       <h1 class="post-page__title" v-html="post.title.rendered"></h1>
-      <Video :html="post.acf.video" />
+      <Video v-for="(video, index) in post.acf.videos" :key="index" :html="video.video" />
       <div class="post-details">
         <Carousel v-if="post.acf.carousel_images" :images="post.acf.carousel_images" />
         <div class="post-details__text" v-html="post.acf.details">

@@ -6,7 +6,7 @@
       </router-link>
       <HamburgerIcon @iconClicked="handleMenu" :menu-open="showMenu" />
       <CloseIcon @iconClicked="handleMenu" :menu-open="showMenu" />
-      <NavOverlay v-if="posts.length" @linkClicked="handleMenu" :open="showMenu" :promo-posts="promoPosts" :narrative-posts="narrativePosts" />
+      <NavMenu v-if="posts.length" @linkClicked="handleMenu" :open="showMenu" :promo-posts="promoPosts" :narrative-posts="narrativePosts" />
     </div>
   </nav>
 </template>
@@ -14,7 +14,7 @@
 <script>
 import HamburgerIcon from '@/components/Navigation/HamburgerIcon';
 import CloseIcon from '@/components/Navigation/CloseIcon';
-import NavOverlay from '@/components/Navigation/NavOverlay';
+import NavMenu from '@/components/Navigation/NavMenu';
 import Logo from '@/assets/svg/main-logo.svg';
 
 
@@ -26,7 +26,7 @@ export default {
   components: {
     HamburgerIcon,
     CloseIcon,
-    NavOverlay,
+    NavMenu,
     Logo,
   },
   data: () => ({

@@ -70,6 +70,7 @@ export default {
   &__dropdown {
     color: $white;
     padding: 25px 0;
+    text-align: center;
 
     &-label {
       cursor: pointer;
@@ -82,7 +83,6 @@ export default {
       font-family: $font-family-content;
       font-size: 18px;
       margin-bottom: 5px;
-      text-align: center;
     }
 
     a {
