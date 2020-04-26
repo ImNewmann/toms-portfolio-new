@@ -26,7 +26,7 @@ export default {
   }),
   async created () {
     const slug = this.$router.currentRoute.path.slice(1);
-    this.page = await getData('tomnewmanpages', `${endPoint}/pages?slug=${slug}`)
+    this.page = await getData(`${endPoint}/pages?slug=${slug}`)
   }
 }
 </script>
