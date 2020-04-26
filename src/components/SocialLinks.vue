@@ -31,11 +31,12 @@ export default {
 
   a, span {
     display: flex;
+    flex-direction: column;
   }
 
   &__icon {
     width: 20px;
-    margin: -2px 8px 0;
+    margin-top: 2px;
     fill: $white;
     transition: all 0.3s ease;
 

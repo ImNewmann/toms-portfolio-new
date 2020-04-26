@@ -44,14 +44,16 @@ export default {
   },
 
   async created () {
+    // This ensures theres still some duration given to loading screen even when data load is instant
+    const loadingFinishedDelay = localStorage.getItem('tomnewmanposts') ? 500 : 0
+    const showContentDelay = localStorage.getItem('tomnewmanposts') ? 1000 : 500
+
     this.posts = await getData('tomnewmanposts', `${endPoint}/posts`);
     const imagesToLoad = this.getProjectImages();
 
     Promise.all(imagesToLoad.map(this.preloadImages)).then(() => {
-      document.body.classList.add('loaded');
-      setTimeout(() => {
-        this.loadContent = true;
-      }, 500)
+      setTimeout(() => { document.body.classList.add('loaded')}, loadingFinishedDelay)
+      setTimeout(() => { this.loadContent = true }, showContentDelay);
     });
   },
 

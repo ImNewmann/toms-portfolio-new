@@ -48,10 +48,31 @@ export default {
   &__links {
     font-family: $font-family-content;
     color: $white;
-    margin-bottom: 5px;
 
-    @include breakpoint(tablet) {
-      margin-bottom: 0;
+    &:first-of-type {
+      order: 2;
+
+      @include breakpoint(tablet) {
+        order: 1;
+      }
+
+      span:last-of-type {
+        opacity: 0;
+
+        @include breakpoint(tablet) {
+          opacity: 1;
+        }
+      }
+    }
+
+    &:last-of-type {
+      order: 1;
+      margin-bottom: 5px;
+
+      @include breakpoint(tablet) {
+        margin-bottom: 0;
+        order: 2;
+      }
     }
 
     .page & {
@@ -67,7 +88,7 @@ export default {
     }
 
     span {
-      padding: 0 5px;
+      padding: 0 15px;
     }
   }
 }

@@ -10,6 +10,3 @@ export const getData = async (localStorageItem, endPoint) => {
   }
   return data;
 }
-
-// Make a more clever solution
-// function findItemInStorage(id, )
