@@ -44,7 +44,7 @@ export default {
   },
 
   async created () {
-    this.posts = await getData(`${endPoint}/posts`);
+    this.posts = await getData(`${endPoint}/posts?per_page=100`);
     const imagesToLoad = this.getProjectImages();
 
     Promise.all(imagesToLoad.map(this.preloadImages)).then(() => {
