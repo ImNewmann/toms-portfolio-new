@@ -18,6 +18,11 @@ export default {
 <style lang="scss">
 .posts {
   margin: 0 auto;
-  width: 100vw;
+  width: 100%;
+  padding-bottom: 65px;
+
+  @include breakpoint(desktop) {
+    width: 85vw;
+  }
 }
 </style>

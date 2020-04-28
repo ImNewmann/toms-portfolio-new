@@ -60,10 +60,11 @@ export default {
 
   &__inner {
     display: flex;
-    max-width: 1400px;
+    width: 100%;
     margin: 0 auto;
     justify-content: space-between;
   }
+  
   &__logo {
     max-width: 250px;
     svg {

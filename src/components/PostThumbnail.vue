@@ -34,12 +34,6 @@ export default {
     filter: grayscale(100%);
   }
 
-  &:nth-child(odd) {
-    .post-thumbnail__image:first-of-type {
-      order: 2;
-    }
-  }
-
   &-link {
     @include breakpoint(desktop) {
       display: flex;
