@@ -22,7 +22,7 @@ export default {
   padding-bottom: 65px;
 
   @include breakpoint(desktop) {
-    width: 85vw;
+    max-width: 1400px;
   }
 }
 </style>
