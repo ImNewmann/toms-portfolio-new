@@ -59,8 +59,8 @@ export default {
       const images = this.posts.map(post => post.acf.featured_images)
       // 3 Visible projects on screen
       for (let i = 0; i <= 2; i++) {
-        visibleImages.push(images[i].image.url);
-        visibleImages.push(images[i].image_2.url)
+        visibleImages.push(images[i].image.image.url);
+        visibleImages.push(images[i].image_2.image.url)
       }
       return visibleImages;
     },

@@ -1,8 +1,19 @@
 <template>
   <div class="post-thumbnail">
     <router-link class="post-thumbnail-link" :to="'/' + postData.slug">
-      <img class="post-thumbnail__image" :src="postData.acf.featured_images.image.url" :alt="postData.acf.featured_images.image.alt" />
-      <img class="post-thumbnail__image" :src="postData.acf.featured_images.image_2.url" :alt="postData.acf.featured_images.image_2.alt" />
+
+      <img :class="[
+      'post-thumbnail__image', 
+      { 'post-thumbnail__image--hide-mobile': !image1.contains_project_title }]" 
+      :src="image1.image.url" 
+      :alt="image1.image.alt" />
+
+      <img :class="[
+      'post-thumbnail__image', 
+      { 'post-thumbnail__image--hide-mobile': !image2.contains_project_title }]" 
+      :src="image2.image.url"
+      :alt="image2.image.alt" />
+
     </router-link>
   </div>
 </template>
@@ -16,6 +27,10 @@ export default {
       required: true,
     },
   },
+  created() {
+    this.image1 = this.postData.acf.featured_images.image;
+    this.image2 = this.postData.acf.featured_images.image_2;
+  }
 }
 </script>
 
@@ -48,7 +63,7 @@ export default {
       width: 50%;
     }
 
-    &:last-of-type {
+    &--hide-mobile {
       display: none;
 
       @include breakpoint(desktop) {
