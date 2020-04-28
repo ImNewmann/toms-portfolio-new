@@ -27,7 +27,7 @@
       </div>
       <div class="nav-overlay__dropdown">
         <div class="nav-overlay__dropdown-label" @click="linkClicked">
-          <router-link to="/about-me">
+          <router-link to="/info">
             Info
           </router-link>
         </div>

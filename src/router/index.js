@@ -18,7 +18,7 @@ const router = new Router({
       component: FrontPage,
     },
     {
-      path: '/about-me',
+      path: '/info',
       name: 'Contact',
       component: Contact,
     },

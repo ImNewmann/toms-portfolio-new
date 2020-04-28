@@ -18,6 +18,7 @@ import { endPoint } from '@/constants/endpoint.js';
 import TitleAndText from '@/components/TitleAndText';
 
 export default {
+  name: 'Contact',
   components: { 
     TitleAndText,
   },
