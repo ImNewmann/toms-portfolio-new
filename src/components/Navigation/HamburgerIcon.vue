@@ -26,6 +26,7 @@ export default {
 .hamburger-icon {
   $block: &;
   cursor: pointer;
+  pointer-events: all;
   display: flex;
   flex-direction: column;
   height: 50px;
@@ -43,11 +44,12 @@ export default {
   }
 
   &__line {
-    height: 3px;
+    height: 2px;
     width: 100%;
-    margin-bottom: 15px;
+    margin-bottom: 14px;
     background-color: $white;
     transition: all 0.3s $bezierCurve;
+    will-change: transform;
 
     .page & {
       background-color: $black;

@@ -23,6 +23,7 @@ export default {
 
 <style lang="scss">
 .close-icon {
+  pointer-events: all;
   $block: &;
   cursor: pointer;
   display: flex;
@@ -30,6 +31,7 @@ export default {
   height: 50px;
   width: 50px;
   z-index: 10;
+  will-change: transform;
 
   &__line {
     height: 3px;
@@ -65,38 +67,4 @@ export default {
     }
   }
 }
-
-// .close-icon-enter-active {
-//   opacity: 0.999;
-//   transition: opacity 0.6s 1s ease;
-
-//   .close-icon__line {
-//     &:nth-child(1) {
-//       transform: rotate(-45deg) scaleX(1) translateX(-15px) translateY(20px);
-//     }
-//     &:nth-child(2) {
-//       transform: rotate(45deg) scaleX(1) translateX(7px) translateY(2px);
-//     }
-//   }
-// }
-
-// .icon-leave-active {
-//   opacity: 0.999;
-//   transition: opacity 0.6s ease;
-
-//   .hamburger-icon__line {
-//     &:nth-child(1) {
-//       transition-delay: 0;
-//       transform: rotate(-40deg) scaleX(0) translateX(-25px) translateY(10px);
-//     }
-//     &:nth-child(2) {
-//       transition-delay: 0.15s;
-//       transform: rotate(-40deg) scaleX(0) translateX(-10px) translateY(10px);
-//     }
-//     &:nth-child(3) {
-//       transition-delay: 0.3s;
-//       transform: rotate(-40deg) scaleX(0) translateX(-5px) translateY(10px);
-//     }
-//   }
-// }
 </style>

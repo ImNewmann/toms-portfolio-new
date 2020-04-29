@@ -1,6 +1,6 @@
 <template>
   <main class="page-wrapper about-page" v-if="page.length">
-    <h1 class="about-page__title">TOM NEWMAN</h1>
+    <!-- <h1 class="about-page__title">TOM NEWMAN</h1> -->
     <div class="about-page__image">
       <img :src="page[0].acf.image.url" :alt="page[0].acf.image.alt" />
     </div>

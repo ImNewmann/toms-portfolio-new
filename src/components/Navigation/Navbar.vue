@@ -53,6 +53,7 @@ export default {
   padding: 20px;
   width: 100%;
   z-index: 1000;
+  pointer-events: none;
 
   @include breakpoint(desktop) {
     padding: 50px;
@@ -66,7 +67,9 @@ export default {
   }
   
   &__logo {
+    pointer-events: all;
     max-width: 250px;
+
     svg {
       transition: fill 0.6s ease;
       fill: $white;

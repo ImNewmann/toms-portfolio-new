@@ -44,7 +44,7 @@ export default {
   },
 
   async created () {
-    this.posts = await getData(`${endPoint}/posts?per_page=100`);
+    this.posts = await getData(`${endPoint}/posts?per_page=20`);
     const imagesToLoad = this.getProjectImages();
 
     Promise.all(imagesToLoad.map(this.preloadImages)).then(() => {
@@ -58,7 +58,7 @@ export default {
       let visibleImages = [];
       const images = this.posts.map(post => post.acf.featured_images)
       // 3 Visible projects on screen
-      for (let i = 0; i <= 2; i++) {
+      for (let i = 0; i <= 3; i++) {
         visibleImages.push(images[i].image.image.url);
         visibleImages.push(images[i].image_2.image.url)
       }
