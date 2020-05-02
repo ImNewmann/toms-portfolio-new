@@ -18,6 +18,7 @@
 <script>
 import { endPoint } from '@/constants/endpoint.js';
 import { getData } from '@/utilities/getData.js';
+import { preloadImages } from '@/utilities/preloadImages.js'
 import LoadingAnimation from '@/components/LoadingAnimation';
 import Navbar from '@/components/Navigation/Navbar';
 import Footer from '@/components/Footer';
@@ -47,7 +48,7 @@ export default {
     this.posts = await getData(`${endPoint}/posts?per_page=20`);
     const imagesToLoad = this.getProjectImages();
 
-    Promise.all(imagesToLoad.map(this.preloadImages)).then(() => {
+    Promise.all(imagesToLoad.map(preloadImages)).then(() => {
       document.body.classList.add('loaded');
       setTimeout(() => { this.loadContent = true }, 500);
     });
@@ -63,14 +64,6 @@ export default {
         visibleImages.push(images[i].image_2.image.url)
       }
       return visibleImages;
-    },
-
-    preloadImages(path) {
-      return new Promise(resolve => {
-        const img = new Image();
-        img.src = path;
-        img.onload = () => resolve({ path, status: "ok" });
-      });
     },
   },
 }
