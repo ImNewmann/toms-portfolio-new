@@ -42,12 +42,6 @@ export default {
     title: 'Creative Director | Tom Newman',
     // all titles will be injected into this template
     titleTemplate: '%s | Tom Newman',
-    meta: [
-      {
-        'http-equiv': 'Content-Security-Policy',
-        'content': 'upgrade-insecure-requests',
-      },
-    ],
   },
 
   async created() {
