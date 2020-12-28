@@ -49,7 +49,7 @@ export default {
       this.$emit('linkClicked', false);
     },
   },
-}
+};
 </script>
 
 <style lang="scss">
@@ -65,8 +65,9 @@ export default {
   left: 0;
   width: 100vw;
   height: 100vh;
+  overflow-y: scroll;
   background-color: rgba(0, 0, 0, 0.9);
-  transition: opacity .3s ease;
+  transition: opacity 0.3s ease;
 
   &__dropdown {
     color: $white;
@@ -96,7 +97,8 @@ export default {
   }
 }
 
-.nav-menu-enter-active, .nav-menu-leave-active {
+.nav-menu-enter-active,
+.nav-menu-leave-active {
   opacity: 0;
 }
 .nav-menu-enter-active {

@@ -18,7 +18,7 @@
 <script>
 import { endPoint } from '@/constants/endpoint.js';
 import { getData } from '@/utilities/getData.js';
-import { preloadImages } from '@/utilities/preloadImages.js'
+import { preloadImages } from '@/utilities/preloadImages.js';
 import LoadingAnimation from '@/components/LoadingAnimation';
 import Navbar from '@/components/Navigation/Navbar';
 import Footer from '@/components/Footer';
@@ -41,32 +41,34 @@ export default {
     // if no subcomponents specify a metaInfo.title, this title will be used
     title: 'Creative Director | Tom Newman',
     // all titles will be injected into this template
-    titleTemplate: '%s | Tom Newman'
+    titleTemplate: '%s | Tom Newman',
   },
 
-  async created () {
-    this.posts = await getData(`${endPoint}/posts?per_page=20`);
+  async created() {
+    this.posts = await getData(`${endPoint}/posts?per_page=100`);
     const imagesToLoad = this.getProjectImages();
 
     Promise.all(imagesToLoad.map(preloadImages)).then(() => {
       document.body.classList.add('loaded');
-      setTimeout(() => { this.loadContent = true }, 500);
+      setTimeout(() => {
+        this.loadContent = true;
+      }, 500);
     });
   },
 
   methods: {
     getProjectImages() {
       let visibleImages = [];
-      const images = this.posts.map(post => post.acf.featured_images)
+      const images = this.posts.map((post) => post.acf.featured_images);
       // 3 Visible projects on screen
       for (let i = 0; i <= 3; i++) {
         visibleImages.push(images[i].image.image.url);
-        visibleImages.push(images[i].image_2.image.url)
+        visibleImages.push(images[i].image_2.image.url);
       }
       return visibleImages;
     },
   },
-}
+};
 </script>
 <style lang="scss" scoped>
 .page-enter {
