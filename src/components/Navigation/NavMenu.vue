@@ -1,26 +1,16 @@
 <template>
   <transition name="nav-menu">
     <div v-if="open" class="nav-menu">
-      <div class="nav-menu__dropdown">
-        <div class="nav-menu__dropdown-label" @click="showNarrative = !showNarrative">
-          Narrative
+      <div v-for="(category, index) in categories" :key="index" class="nav-menu__dropdown">
+        <div class="nav-menu__dropdown-label">
+          {{ category.name }}
         </div>
         <div class="nav-menu__dropdown-links">
           <ul>
-            <li v-for="(post, index) in narrativePosts" :key="index" @click="linkClicked">
-              <router-link :to="'/' + post.slug" v-html="post.title.rendered" />
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="nav-menu__dropdown">
-        <div class="nav-menu__dropdown-label" @click="showPromo = !showPromo">
-          Promo
-        </div>
-        <div class="nav-menu__dropdown-links">
-          <ul>
-            <li v-for="(post, index) in promoPosts" :key="index" @click="linkClicked">
-              <router-link :to="'/' + post.slug" v-html="post.title.rendered" />
+            <li v-for="(post, index) in posts" :key="index" @click="linkClicked">
+              <div v-if="post.categories[0] === category.id">
+                <router-link :to="'/' + post.slug" v-html="post.title.rendered" />
+              </div>
             </li>
           </ul>
         </div>
@@ -41,8 +31,8 @@ export default {
   name: 'NavOverlay',
   props: {
     open: { type: Boolean, default: false },
-    narrativePosts: { type: Array, required: true },
-    promoPosts: { type: Array, required: true },
+    posts: { type: Array, required: true },
+    categories: { type: Array, required: true },
   },
   methods: {
     linkClicked() {

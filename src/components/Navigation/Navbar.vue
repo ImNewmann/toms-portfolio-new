@@ -6,17 +6,24 @@
       </router-link>
       <HamburgerIcon @iconClicked="handleMenu" :menu-open="showMenu" />
       <CloseIcon @iconClicked="handleMenu" :menu-open="showMenu" />
-      <NavMenu v-if="posts.length" @linkClicked="handleMenu" :open="showMenu" :promo-posts="promoPosts" :narrative-posts="narrativePosts" />
+      <NavMenu
+        v-if="posts.length"
+        @linkClicked="handleMenu"
+        :open="showMenu"
+        :posts="posts"
+        :categories="categories"
+      />
     </div>
   </nav>
 </template>
 
 <script>
+import { endPoint } from '@/constants/endpoint.js';
+import { getData } from '@/utilities/getData.js';
 import HamburgerIcon from '@/components/Navigation/HamburgerIcon';
 import CloseIcon from '@/components/Navigation/CloseIcon';
 import NavMenu from '@/components/Navigation/NavMenu';
 import Logo from '@/assets/svg/main-logo.svg';
-
 
 export default {
   name: 'Navbar',
@@ -30,20 +37,19 @@ export default {
     Logo,
   },
   data: () => ({
-    promoPosts: [],
-    narrativePosts: [],
+    categories: [],
     showMenu: false,
   }),
-  created() {
-    this.promoPosts = this.posts.filter(post => post.categories[0] === 3);
-    this.narrativePosts = this.posts.filter(post => post.categories[0] === 2);
+  async created() {
+    const categories = await getData(`${endPoint}/categories`);
+    this.categories = categories.filter((category) => category.slug !== 'uncategorised');
   },
   methods: {
     handleMenu(isOpen) {
       this.showMenu = isOpen;
-    }
+    },
   },
-}
+};
 </script>
 
 <style lang="scss">
@@ -65,7 +71,7 @@ export default {
     margin: 0 auto;
     justify-content: space-between;
   }
-  
+
   &__logo {
     pointer-events: all;
     max-width: 250px;
@@ -90,5 +96,4 @@ export default {
   transform: translateY(0);
   transition: all 0.4s $bezierCurve;
 }
-
 </style>
