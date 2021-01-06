@@ -39,7 +39,7 @@ export default {
 
   metaInfo: {
     // if no subcomponents specify a metaInfo.title, this title will be used
-    title: 'Creative Director | Tom Newman',
+    title: 'Director',
     // all titles will be injected into this template
     titleTemplate: '%s | Tom Newman',
   },
