@@ -3,10 +3,11 @@
     <div class="about-page__image">
       <img :src="page[0].acf.image.url" :alt="page[0].acf.image.alt" />
     </div>
-    <TitleAndText v-for="(item, index) in page[0].acf.title_and_text" 
-      :key="index" 
-      :title="item.title" 
-      :text="item.text" 
+    <TitleAndText
+      v-for="(item, index) in page[0].acf.title_and_text"
+      :key="index"
+      :title="item.title"
+      :text="item.text"
     />
   </main>
 </template>
@@ -18,17 +19,17 @@ import TitleAndText from '@/components/TitleAndText';
 
 export default {
   name: 'Contact',
-  components: { 
+  components: {
     TitleAndText,
   },
   data: () => ({
     page: [],
   }),
-  async created () {
+  async created() {
     const slug = this.$router.currentRoute.path.slice(1);
-    this.page = await getData(`${endPoint}/pages?slug=${slug}`)
-  }
-}
+    this.page = await getData(`${endPoint}/pages?slug=${slug}`);
+  },
+};
 </script>
 <style lang="scss">
 .about-page {
@@ -45,7 +46,9 @@ export default {
   }
 
   .title-and-text {
-    max-width: 700px;
+    img {
+      object-fit: contain;
+    }
   }
 }
 </style>
