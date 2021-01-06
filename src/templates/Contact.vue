@@ -48,6 +48,7 @@ export default {
   .title-and-text {
     img {
       object-fit: contain;
+      height: auto;
     }
   }
 }
