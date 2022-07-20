@@ -18,8 +18,8 @@
                     <div class="post-video-preview">
                         <VideoPreview
                             v-if="videoPreviewData.length && videoPreviewData[index].initLoad"
+                            :post="post"
                             :play="videoPreviewData.length && videoPreviewData[index].show"
-                            :pause="videoPreviewData.length && !videoPreviewData[index].show"
                             :orientation="orientation"
                             :controls="false"
                             :autoplay="true"
