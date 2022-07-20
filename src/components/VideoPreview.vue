@@ -44,10 +44,11 @@ export default {
         play(val) {
             if (val) {
                 this.$refs.player.play();
-                // this.$refs.player.unmute();
+                this.$refs.player.unmute();
                 console.log('play');
             } else {
                 this.$refs.player.pause();
+                this.$refs.player.mute();
                 console.log('pause');
             }
         },

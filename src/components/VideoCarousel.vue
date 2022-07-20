@@ -26,7 +26,7 @@
                             @videoReady="() => previewReady(index)"
                         />
                     </div>
-                    <img :src="post.acf.featured_images.image.image.url" :alt="post.title.rendered" />
+                    <img :src="getFeaturedImage(post)" :alt="post.title.rendered" />
                 </router-link>
             </swiper-slide>
             <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
@@ -97,6 +97,15 @@ export default {
         previewReady(index) {
             this.videoPreviewData[index].loaded = true;
             this.videoPreviewData[index].delayReveal = true;
+        },
+        getFeaturedImage(post) {
+            const oldFeatured = post.acf.featured_images.image.image.url;
+
+            if (!post.acf.featured_image) return oldFeatured;
+
+            const newFeatured = post.acf.featured_image.url;
+
+            return newFeatured;
         },
     },
 };
