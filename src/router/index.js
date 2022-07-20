@@ -16,40 +16,45 @@ const router = new Router({
             path: '/',
             name: 'FrontPage',
             component: FrontPage,
+            children: [
+                {
+                    path: ':postSlug',
+                    name: 'Post',
+                    component: Post,
+                    props: true,
+                    meta: {
+                        showModal: true,
+                    },
+                },
+            ],
         },
         {
             path: '/info',
             name: 'Contact',
             component: Contact,
         },
-        {
-            // Assuming you're using the default permalink structure for posts
-            path: '/:postSlug',
-            name: 'Post',
-            component: Post,
-        },
     ],
     mode: 'history',
     base: '',
 
-    // Prevents window from scrolling back to top
-    // when navigating between components/views
-    scrollBehavior(to, from, savedPosition) {
-        if (savedPosition) {
-            return savedPosition;
-        } else {
-            return { x: 0, y: 0 };
-        }
-    },
+    // // Prevents window from scrolling back to top
+    // // when navigating between components/views
+    // scrollBehavior(to, from, savedPosition) {
+    //     if (savedPosition) {
+    //         return savedPosition;
+    //     } else {
+    //         return { x: 0, y: 0 };
+    //     }
+    // },
 });
 
-router.afterEach((to) => {
-    // (to, from)
-    if (to.path !== '/') {
-        document.body.classList.add('page');
-    } else {
-        document.body.classList.remove('page');
-    }
-});
+// router.afterEach((to) => {
+//     // (to, from)
+//     if (to.path !== '/') {
+//         document.body.classList.add('page');
+//     } else {
+//         document.body.classList.remove('page');
+//     }
+// });
 
 export default router;

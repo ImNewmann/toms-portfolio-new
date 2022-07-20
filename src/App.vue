@@ -7,9 +7,7 @@
             <Navbar v-if="loadContent" :posts="posts" />
         </transition>
         <transition name="page" appear>
-            <keep-alive>
-                <router-view v-if="loadContent" :posts="posts" :key="$route.path"></router-view>
-            </keep-alive>
+            <router-view v-if="loadContent" :posts="posts"></router-view>
         </transition>
         <Footer v-if="loadContent" />
     </div>
@@ -81,7 +79,7 @@ export default {
 }
 .page-enter-to {
     opacity: 1;
-    transition: all 0.3s 0.35s ease;
+    transition: all 0.3s 0.5s ease;
 }
 .page-leave-active {
     opacity: 0;

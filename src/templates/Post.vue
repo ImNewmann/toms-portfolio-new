@@ -1,18 +1,12 @@
 <template>
-    <main class="page-wrapper post-page">
-        <h1 class="post-page__title" v-html="post.title.rendered"></h1>
-        <Video v-for="(video, index) in post.acf.videos" :key="index" :html="video.video" />
-        <div class="post-details">
-            <Carousel v-if="post.acf.carousel_images" :images="post.acf.carousel_images" />
-            <div class="post-details__text" v-html="post.acf.details"></div>
-        </div>
-    </main>
+    <transition name="fade" appear>
+        <VideoPlayer v-if="showModal" :post="post" />
+    </transition>
 </template>
 
 <script>
 import { formatTitle } from '@/utilities/formatTitle.js';
-import Video from '@/components/Video';
-import Carousel from '@/components/Carousel';
+import VideoPlayer from '@/components/VideoPlayer';
 
 export default {
     name: 'Post',
@@ -20,12 +14,13 @@ export default {
         posts: { type: Array, required: true },
     },
     components: {
-        Video,
-        Carousel,
+        VideoPlayer,
     },
     data: () => ({
-        post: [],
         title: null,
+        videoLength: null,
+        showModal: false,
+        post: {},
     }),
 
     metaInfo() {
@@ -33,45 +28,34 @@ export default {
             title: this.title,
         };
     },
+    watch: {
+        $route: {
+            immediate: true,
+            handler: function(newVal) {
+                this.showModal = newVal.meta && newVal.meta.showModal;
+                this.getPost();
+            },
+        },
+    },
 
     created() {
-        const currentRoute = this.$router.currentRoute.params.postSlug;
-        this.title = formatTitle(currentRoute);
-        this.post = this.posts.filter((post) => post.slug === currentRoute)[0];
+        this.getPost();
+    },
+
+    methods: {
+        getPost() {
+            const currentRoute = this.$router.currentRoute.params.postSlug;
+            this.title = formatTitle(currentRoute);
+            this.post = this.posts.filter((post) => post.slug === currentRoute)[0];
+            this.videoLength = this.post.acf.videos.length;
+            console.log(currentRoute);
+        },
     },
 };
 </script>
 <style lang="scss">
-.post-page {
-    &__title {
-        font-family: $font-family-title;
-        text-align: center;
-        margin-bottom: 40px;
-        color: $black;
-    }
-}
-
-.post-details {
-    display: block;
-
-    .carousel {
-        @include breakpoint(tablet) {
-            display: inline-block;
-            width: 65%;
-        }
-    }
-
-    &__text {
-        font-family: $font-family-content;
-        font-weight: 300;
-        vertical-align: top;
-        color: $black;
-
-        @include breakpoint(tablet) {
-            display: inline-block;
-            padding-left: 20px;
-            width: calc(35% - 20px);
-        }
-    }
+.fade-enter-active,
+.fade-leave-active {
+    opacity: 0;
 }
 </style>

@@ -10,12 +10,15 @@
   "dependencies": {
     "axios": "^0.19.2",
     "core-js": "^3.6.4",
+    "plyr": "^3.7.2",
     "swiper": "^5.3.7",
     "vue": "^2.6.11",
     "vue-awesome-swiper": "^4.1.1",
     "vue-meta": "^2.3.3",
+    "vue-plyr": "^7.0.0",
     "vue-resource": "^1.5.1",
     "vue-router": "^3.1.6",
+    "vue-vimeo-player": "^0.2.2",
     "vuex": "^3.2.0"
   },
   "devDependencies": {

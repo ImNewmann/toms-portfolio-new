@@ -1,28 +1,29 @@
 body {
-  transition: background-color 0.4s ease;
+    transition: background-color 0.4s ease;
 
-  &.loaded {
-    background-color: $black;
-  }
+    &.loaded {
+        background-color: $black;
+    }
 
-  &.page {
-    background-color: $white;
-  }
+    &.page {
+        background-color: $white;
+    }
 }
 
 #app {
-  min-height: 100vh;
-  position: relative;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
 }
 
 .page-wrapper {
-  display: flex;
-  flex-direction: column;
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 120px 20px 90px;
+    display: flex;
+    flex-direction: column;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 120px 20px 90px;
 
-  @include breakpoint(desktop) {
-    padding: 180px 20px 65px;
-  }
+    @include breakpoint(desktop) {
+        padding: 180px 20px 65px;
+    }
 }
