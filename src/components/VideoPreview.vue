@@ -34,9 +34,9 @@ export default {
             return ['video-preview', this.orientation === 'Portrait' ? 'video-preview--portrait' : ''];
         },
         videoID() {
-            if (!this.post.acf.video_links) return '493789308';
+            if (!this.post.acf.preview_video_link) return '493789308';
 
-            return this.getVimeoIdFromUrl(this.post.acf.video_links[0].vimeo_url);
+            return this.getVimeoIdFromUrl(this.post.acf.preview_video_link);
         },
     },
 
