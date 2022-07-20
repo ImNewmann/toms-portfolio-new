@@ -33,7 +33,7 @@ export default {
     }),
 
     async created() {
-        const categories = await getData(`${endPoint}/categories`);
+        const categories = await getData(`${endPoint}/categories?orderby=id`);
         this.categories = categories.filter((category) => category.slug !== 'uncategorised');
     },
 
