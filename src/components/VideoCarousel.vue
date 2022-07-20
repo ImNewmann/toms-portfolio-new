@@ -8,7 +8,7 @@
                 :data-preview-loaded="videoPreviewData.length && videoPreviewData[index].loaded"
                 :data-preview-delay-reveal="videoPreviewData.length && videoPreviewData[index].delayReveal"
             >
-                <router-link :to="`/${post.slug}`">
+                <router-link :to="`/${post.slug}`" class="post-link">
                     <div
                         class="post-overlay"
                         v-html="post.title.rendered"
@@ -55,6 +55,10 @@ export default {
         swiperOptions: {
             slidesPerView: 1.2,
             spaceBetween: 10,
+            shortSwipes: false,
+            longSwipes: true,
+            longSwipesRatio: 0.1,
+            longSwipesMs: 100,
             breakpoints: {
                 640: {
                     slidesPerView: 4,
@@ -152,6 +156,10 @@ export default {
 
         &:last-child:hover {
             margin: 0 -40px;
+        }
+
+        .post-link {
+            z-index: 3;
         }
 
         .post-overlay {

@@ -38,10 +38,6 @@ export default {
         },
     },
 
-    created() {
-        this.getPost();
-    },
-
     methods: {
         getPost() {
             const currentRoute = this.$router.currentRoute.params.postSlug;
