@@ -123,6 +123,21 @@ export default {
         .swiper-wrapper {
             padding: 20px 0;
         }
+
+        .swiper-button-prev {
+            left: -50px;
+        }
+
+        .swiper-button-next {
+            right: -50px;
+        }
+
+        .swiper-button-prev:before,
+        .swiper-button-prev:after,
+        .swiper-button-next:before,
+        .swiper-buttom-next:after {
+            border-width: 0.2em 0.2em 0 0;
+        }
     }
 
     &[data-orientation='Portrait'] {
@@ -173,8 +188,7 @@ export default {
 
         .post-overlay {
             position: absolute;
-            background: rgba(0, 0, 0, 0.5);
-            top: 0;
+            background: linear-gradient(to bottom, transparent 70%, rgba(0, 0, 0, 0.5) 100%);
             left: 0;
             bottom: 0;
             width: 100%;

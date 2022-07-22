@@ -32,8 +32,10 @@ export default {
         $route: {
             immediate: true,
             handler: function(newVal) {
-                this.showModal = newVal.meta && newVal.meta.showModal;
-                this.getPost();
+                if (newVal.meta && newVal.meta.showModal) {
+                    this.showModal = newVal.meta && newVal.meta.showModal;
+                    this.getPost();
+                }
             },
         },
     },

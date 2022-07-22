@@ -2,13 +2,14 @@
     <div class="video-player">
         <div class="video-player__container">
             <h1 class="post__title" v-html="post.title.rendered"></h1>
+
             <div class="post__videos">
-                <Video />
-                <Episodes v-if="post.acf.videos.length > 1" :videos="post.acf.videos" />
+                <Video v-for="(video, index) in post.acf.videos" :key="index" :html="video.video" />
             </div>
             <div class="post__details">
+                <!-- <div class="post-details__text" v-html="post.acf.details"></div> -->
+
                 <Carousel v-if="post.acf.carousel_images" :images="post.acf.carousel_images" />
-                <div class="post-details__text" v-html="post.acf.details"></div>
             </div>
         </div>
     </div>
@@ -16,18 +17,20 @@
 
 <script>
 import Video from '@/components/Video';
-import Episodes from '@/components/Episodes';
 import Carousel from '@/components/Carousel';
 
 export default {
     name: 'VideoPlayer',
     components: {
         Video,
-        Episodes,
         Carousel,
     },
     props: {
         post: { type: Object, default: () => {} },
+    },
+
+    created() {
+        console.log(this.post);
     },
     methods: {},
 };
@@ -52,7 +55,7 @@ export default {
     z-index: 5;
 
     &__container {
-        width: 80%;
+        width: 60%;
         height: 80%;
         margin-top: 10vh;
     }
@@ -77,7 +80,7 @@ export default {
             font-family: $font-family-content;
             font-weight: 300;
             vertical-align: top;
-            color: $black;
+            color: $white;
             @include breakpoint(tablet) {
                 display: inline-block;
                 padding-left: 20px;

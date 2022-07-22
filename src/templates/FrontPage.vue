@@ -1,5 +1,5 @@
 <template>
-    <section class="posts">
+    <section :class="['posts', this.scrollLock ? 'lock-scroll' : '']">
         <div v-for="(category, index) in categories" :key="index">
             <div class="category-title">
                 {{ category.name }}
@@ -7,7 +7,6 @@
             <VideoCarousel
                 :posts="getPostsFromCategories(category.id)"
                 :orientation="category.acf.orientation"
-                @videoClicked="handleVideoClick"
             />
         </div>
         <router-view :posts="posts"></router-view>
@@ -28,8 +27,7 @@ export default {
 
     data: () => ({
         categories: [],
-        showVideoPlayer: false,
-        activePost: null,
+        scrollLock: false,
     }),
 
     async created() {
@@ -41,11 +39,6 @@ export default {
         getPostsFromCategories(categoryID) {
             return this.posts.filter((post) => post.categories[0] === categoryID);
         },
-
-        handleVideoClick(post) {
-            this.activePost = post;
-            this.showVideoPlayer = true;
-        },
     },
 };
 </script>
@@ -54,7 +47,7 @@ export default {
 .posts {
     margin: 0 auto;
     margin-top: 200px;
-    width: 100%;
+    width: 90%;
     padding-bottom: 65px;
 
     // @include breakpoint(desktop) {
@@ -71,5 +64,9 @@ export default {
     .video-carousel {
         margin-bottom: 30px;
     }
+}
+
+.lock-scroll {
+    overflow: hidden;
 }
 </style>

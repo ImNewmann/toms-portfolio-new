@@ -1,29 +1,12 @@
 <template>
-    <vimeo-player
-        class="video"
-        ref="player"
-        :video-id="videoID"
-        :controls="controls"
-        :autoplay="autoplay"
-    ></vimeo-player>
+    <div class="video" v-html="html"></div>
 </template>
 
 <script>
 export default {
-    name: 'VideoPreview',
+    name: 'Video',
     props: {
-        controls: { type: Boolean, default: true },
-        autoplay: { type: Boolean, default: false },
-    },
-    data: () => ({
-        videoID: '493789308',
-    }),
-
-    watch: {
-        play(val) {
-            if (val) this.$refs.player.play();
-            else this.$refs.player.pause();
-        },
+        html: { type: String, required: true },
     },
 };
 </script>
@@ -32,6 +15,7 @@ export default {
 .video {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 */
+    padding-top: 25px;
     height: 0;
     margin-bottom: 20px;
 }
