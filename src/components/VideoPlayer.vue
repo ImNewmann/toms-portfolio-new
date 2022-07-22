@@ -7,9 +7,8 @@
                 <Video v-for="(video, index) in post.acf.videos" :key="index" :html="video.video" />
             </div>
             <div class="post__details">
-                <!-- <div class="post-details__text" v-html="post.acf.details"></div> -->
-
-                <ImageGrid v-if="post.acf.carousel_images" :images="post.acf.carousel_images" />
+                <div class="post-details__text" v-html="post.acf.details"></div>
+                <ImageCarousel v-if="post.acf.carousel_images" :images="post.acf.carousel_images" />
             </div>
         </div>
     </div>
@@ -17,13 +16,13 @@
 
 <script>
 import Video from '@/components/Video';
-import ImageGrid from '@/components/ImageGrid';
+import ImageCarousel from '@/components/Carousel';
 
 export default {
     name: 'VideoPlayer',
     components: {
         Video,
-        ImageGrid,
+        ImageCarousel,
     },
     props: {
         post: { type: Object, default: () => {} },
@@ -51,7 +50,7 @@ export default {
     overflow-y: scroll;
     opacity: 1;
     transition: opacity 0.3s ease;
-    background-color: rgba(20, 20, 20, 0.8);
+    background-color: rgba(20, 20, 20, 0.85);
     z-index: 5;
 
     &__container {
@@ -81,6 +80,7 @@ export default {
             font-weight: 300;
             vertical-align: top;
             color: $white;
+            margin-bottom: 20px;
             @include breakpoint(tablet) {
                 display: inline-block;
                 padding-left: 20px;
