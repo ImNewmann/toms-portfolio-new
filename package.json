@@ -12,6 +12,7 @@
     "core-js": "^3.6.4",
     "plyr": "^3.7.2",
     "swiper": "^5.3.7",
+    "throttle-debounce": "^5.0.0",
     "vue": "^2.6.11",
     "vue-awesome-swiper": "^4.1.1",
     "vue-meta": "^2.3.3",

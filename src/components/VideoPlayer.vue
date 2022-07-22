@@ -38,7 +38,7 @@ export default {
 <style lang="scss">
 .video-player {
     pointer-events: all;
-    padding: 50px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -54,9 +54,18 @@ export default {
     z-index: 5;
 
     &__container {
-        width: 60%;
+        width: 100%;
         height: 80%;
-        margin-top: 10vh;
+        margin-top: 120px;
+
+        @include breakpoint(tablet) {
+            width: 80%;
+        }
+
+        @include breakpoint(desktop) {
+            width: 60%;
+            margin-top: 19vh;
+        }
     }
 
     .post {
