@@ -57,7 +57,6 @@ export default {
     .category-title {
         font-family: $font-family-title;
         margin-bottom: 20px;
-        margin-left: 60px;
         color: $white;
     }
 
