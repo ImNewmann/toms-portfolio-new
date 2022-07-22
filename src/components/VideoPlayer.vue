@@ -9,7 +9,7 @@
             <div class="post__details">
                 <!-- <div class="post-details__text" v-html="post.acf.details"></div> -->
 
-                <Carousel v-if="post.acf.carousel_images" :images="post.acf.carousel_images" />
+                <ImageGrid v-if="post.acf.carousel_images" :images="post.acf.carousel_images" />
             </div>
         </div>
     </div>
@@ -17,13 +17,13 @@
 
 <script>
 import Video from '@/components/Video';
-import Carousel from '@/components/Carousel';
+import ImageGrid from '@/components/ImageGrid';
 
 export default {
     name: 'VideoPlayer',
     components: {
         Video,
-        Carousel,
+        ImageGrid,
     },
     props: {
         post: { type: Object, default: () => {} },
@@ -51,7 +51,7 @@ export default {
     overflow-y: scroll;
     opacity: 1;
     transition: opacity 0.3s ease;
-    background-color: rgba(20, 20, 20, 0.97);
+    background-color: rgba(20, 20, 20, 0.8);
     z-index: 5;
 
     &__container {

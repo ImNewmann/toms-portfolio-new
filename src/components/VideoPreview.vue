@@ -81,13 +81,14 @@ export default {
     height: 0;
     top: 50%;
     transform: translateY(-50%);
+
     &--portrait {
         position: absolute;
         padding: 0;
         top: 50%;
         left: 50%;
-        width: 120vw;
-        height: 100vh;
+        height: calc(70vw * 9 / 16);
+        width: 70vw;
         transform: translate(-50%, -50%);
     }
 }

@@ -1,6 +1,6 @@
 <template>
     <div class="video-carousel" :data-orientation="orientation">
-        <swiper class="swiper" :options="swiperOptions">
+        <swiper ref="swiper" class="swiper" :options="swiperOptions">
             <swiper-slide
                 :class="videoPreviewData.length && videoPreviewData[index].show ? 'show-preview' : ''"
                 v-for="(post, index) in posts"
@@ -49,7 +49,7 @@ export default {
     },
     props: {
         posts: { type: Array, required: true },
-        orientation: { type: String, default: 'Portrait' },
+        orientation: { type: String, default: 'Landscape' },
     },
     data: () => ({
         swiperOptions: {
@@ -71,7 +71,12 @@ export default {
             },
         },
         videoPreviewData: [],
+        swiperContainer: null,
+        swiperSlides: [],
     }),
+    created() {
+        // this.swiperOptions.breakpoints['640'].slidesPerView = this.orientation === 'Portrait' ? 5 : 4;
+    },
     mounted() {
         this.posts.forEach(() =>
             this.videoPreviewData.push({
@@ -81,6 +86,9 @@ export default {
                 delayReveal: false,
             })
         );
+
+        this.swiperContainer = this.$refs.swiper.$el;
+        this.swiperSlides = this.$refs.swiper.$children;
     },
 
     methods: {
@@ -88,10 +96,12 @@ export default {
             this.videoPreviewData[index].initLoad = true;
             this.videoPreviewData[index].show = true;
             this.videoPreviewData[index].delayReveal = false;
+            this.handlePortraitVideos(true, this.orientation, index);
         },
 
         handleMouseLeave(index) {
             this.videoPreviewData[index].show = false;
+            this.handlePortraitVideos(false);
         },
 
         previewReady(index) {
@@ -107,6 +117,20 @@ export default {
 
             return newFeatured;
         },
+
+        handlePortraitVideos(onHover, orientation, index) {
+            if (!onHover) {
+                this.swiperContainer.style.transform = `translate3d(0, 0, 0)`;
+                this.swiperContainer.classList.remove('hide-arrows');
+            } else {
+                if (orientation !== 'Portrait') return;
+                if (index <= 1) return;
+
+                const offset = 16;
+                this.swiperContainer.style.transform = `translate3d(-${offset * index}%, 0, 0)`;
+                this.swiperContainer.classList.add('hide-arrows');
+            }
+        },
     },
 };
 </script>
@@ -119,6 +143,7 @@ export default {
         width: 100%;
         height: 100%;
         overflow: visible;
+        transition: transform 0.3s ease;
 
         .swiper-wrapper {
             padding: 20px 0;
@@ -126,23 +151,36 @@ export default {
 
         .swiper-button-prev {
             left: -50px;
+
+            .hide-arrows & {
+                display: none;
+            }
         }
 
         .swiper-button-next {
             right: -50px;
         }
-
         .swiper-button-prev:before,
-        .swiper-button-prev:after,
-        .swiper-button-next:before,
-        .swiper-buttom-next:after {
+        .swiper-button-next:before {
+            border-color: $white;
+            border-style: solid;
             border-width: 0.2em 0.2em 0 0;
+            content: '';
+            display: inline-block;
+            transform: rotate(-135deg);
+            vertical-align: top;
+            width: 1.8em;
+            height: 1.8em;
+        }
+
+        .swiper-button-next:before {
+            transform: rotate(45deg);
         }
     }
 
     &[data-orientation='Portrait'] {
         .swiper-slide {
-            height: 64vh;
+            height: calc(49vw * 9 / 16);
 
             img {
                 height: 100%;
@@ -150,7 +188,7 @@ export default {
             }
 
             &:hover {
-                width: 64vw !important;
+                width: 70vw !important;
             }
         }
     }
@@ -232,6 +270,13 @@ export default {
             .post-video-preview {
                 transition-delay: 0.5s;
             }
+        }
+    }
+
+    .hide-arrows {
+        .swiper-button-next,
+        .swiper-button-prev {
+            display: none;
         }
     }
 }
