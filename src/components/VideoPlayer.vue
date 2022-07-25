@@ -1,6 +1,10 @@
 <template>
     <div class="video-player">
-        <div class="video-player__container">
+        <div class="video-player__modal">
+            <router-link to="/" class="video-player-close-btn">
+                <div class="video-player-close-btn__line"></div>
+                <div class="video-player-close-btn__line"></div>
+            </router-link>
             <h1 class="post__title" v-html="post.title.rendered"></h1>
 
             <div class="post__videos">
@@ -27,10 +31,6 @@ export default {
     props: {
         post: { type: Object, default: () => {} },
     },
-
-    created() {
-        console.log(this.post);
-    },
     methods: {},
 };
 </script>
@@ -38,33 +38,63 @@ export default {
 <style lang="scss">
 .video-player {
     pointer-events: all;
-    padding: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
+    position: fixed;
     overflow-y: scroll;
     opacity: 1;
     transition: opacity 0.3s ease;
-    background-color: rgba(20, 20, 20, 0.85);
-    z-index: 5;
+    background-color: rgba(20, 20, 20, 0.8);
+    z-index: 1000;
 
-    &__container {
-        width: 100%;
-        height: 80%;
-        margin-top: 120px;
+    &__modal {
+        border-radius: 10px;
+        left: 50%;
+        top: 5%;
+        position: absolute;
+        transform: translateX(-50%);
+        padding: 40px 20px;
+        margin: auto;
+        background-color: rgba(26, 26, 26, 1);
+        max-width: 1000px;
+        width: 98%;
+        height: auto;
 
         @include breakpoint(tablet) {
-            width: 80%;
+            top: 10%;
+            padding: 80px;
         }
+    }
 
-        @include breakpoint(desktop) {
-            width: 60%;
-            margin-top: 19vh;
+    &-close-btn {
+        position: absolute;
+        top: 25px;
+        right: 25px;
+        pointer-events: all;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        height: 50px;
+        width: 25px;
+        will-change: transform;
+
+        &__line {
+            height: 2px;
+            width: 100%;
+            margin-bottom: 15px;
+            background-color: white;
+
+            &:nth-child(1) {
+                transform: rotate(-45deg) scaleX(1) translateX(-12px) translateY(12px);
+            }
+
+            &:nth-child(2) {
+                transform: rotate(45deg) scaleX(1) translateX(0px) translateY(0px);
+            }
         }
     }
 
@@ -73,6 +103,7 @@ export default {
             font-family: $font-family-title;
             text-align: center;
             margin-bottom: 40px;
+            padding: 0 40px;
             color: $white;
         }
     }
@@ -90,11 +121,6 @@ export default {
             vertical-align: top;
             color: $white;
             margin-bottom: 20px;
-            @include breakpoint(tablet) {
-                display: inline-block;
-                padding-left: 20px;
-                width: calc(35% - 20px);
-            }
         }
     }
 }
