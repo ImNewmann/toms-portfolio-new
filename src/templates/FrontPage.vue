@@ -14,27 +14,19 @@
 </template>
 
 <script>
-import { endPoint } from '@/constants/endpoint.js';
-import { getData } from '@/utilities/getData.js';
 import VideoCarousel from '@/components/VideoCarousel';
 
 export default {
     name: 'FrontPage',
     props: {
         posts: { type: Array, required: true },
+        categories: { type: Array, required: true },
     },
     components: { VideoCarousel },
 
     data: () => ({
-        categories: [],
         scrollLock: false,
     }),
-
-    async created() {
-        const categories = await getData(`${endPoint}/categories?orderby=id`);
-        this.categories = categories.filter((category) => category.slug !== 'uncategorised');
-    },
-
     methods: {
         getPostsFromCategories(categoryID) {
             return this.posts.filter((post) => post.categories[0] === categoryID);

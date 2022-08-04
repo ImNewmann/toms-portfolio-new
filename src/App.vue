@@ -4,10 +4,10 @@
             <LoadingAnimation v-if="!loadContent" />
         </transition>
         <transition name="nav" appear>
-            <Navbar v-if="loadContent" :posts="posts" />
+            <Navbar v-if="loadContent" :posts="posts" :categories="categories" />
         </transition>
         <transition name="page" appear>
-            <router-view v-if="loadContent" :posts="posts"></router-view>
+            <router-view v-if="loadContent" :posts="posts" :categories="categories"></router-view>
         </transition>
         <Footer v-if="loadContent" />
     </div>
@@ -33,6 +33,7 @@ export default {
     data: () => ({
         loadContent: false,
         posts: [],
+        categories: [],
     }),
 
     metaInfo: {
@@ -48,8 +49,13 @@ export default {
     },
 
     async created() {
+        const categories = await getData(`${endPoint}/categories?orderby=id`);
+        this.categories = categories.filter((category) => category.slug !== 'uncategorised');
+
         this.posts = await getData(`${endPoint}/posts?per_page=100`);
-        const imagesToLoad = this.getProjectImages();
+
+        const featuredCategory = this.categories.filter((cat) => cat.slug === 'featured')[0];
+        const imagesToLoad = this.getProjectImages(featuredCategory);
 
         Promise.all(imagesToLoad.map(preloadImages)).then(() => {
             document.body.classList.add('loaded');
@@ -60,13 +66,14 @@ export default {
     },
 
     methods: {
-        getProjectImages() {
+        getProjectImages(featuredCat) {
             let visibleImages = [];
-            const images = this.posts.map((post) => post.acf.featured_images);
-            // 3 Visible projects on screen
+
+            const featuredPosts = this.posts.filter((post) => post.categories.includes(featuredCat.id));
+
+            // 4 Visible projects on screen
             for (let i = 0; i <= 3; i++) {
-                visibleImages.push(images[i].image.image.url);
-                visibleImages.push(images[i].image_2.image.url);
+                visibleImages.push(featuredPosts[i].acf.featured_image.url);
             }
             return visibleImages;
         },

@@ -18,8 +18,6 @@
 </template>
 
 <script>
-import { endPoint } from '@/constants/endpoint.js';
-import { getData } from '@/utilities/getData.js';
 import HamburgerIcon from '@/components/Navigation/HamburgerIcon';
 import CloseIcon from '@/components/Navigation/CloseIcon';
 import NavMenu from '@/components/Navigation/NavMenu';
@@ -29,6 +27,7 @@ export default {
     name: 'Navbar',
     props: {
         posts: { type: Array, required: true },
+        categories: { type: Array, required: true },
     },
     components: {
         HamburgerIcon,
@@ -40,10 +39,6 @@ export default {
         categories: [],
         showMenu: false,
     }),
-    async created() {
-        const categories = await getData(`${endPoint}/categories`);
-        this.categories = categories.filter((category) => category.slug !== 'uncategorised');
-    },
     methods: {
         handleMenu(isOpen) {
             this.showMenu = isOpen;
