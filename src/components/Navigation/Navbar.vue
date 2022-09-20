@@ -36,7 +36,6 @@ export default {
         Logo,
     },
     data: () => ({
-        categories: [],
         showMenu: false,
     }),
     methods: {
