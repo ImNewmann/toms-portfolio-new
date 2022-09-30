@@ -1,7 +1,7 @@
 <template>
     <footer class="footer">
         <div class="footer__links">
-            <a href="mailto:tom@tomnewman.eu">tom@tomnewman.eu</a>
+            <a href="mailto:tom@tomnewman.uk">tom@tomnewman.uk</a>
             <span>/</span>
             <a href="tel:+447495718055">+447495718055</a>
             <span>/</span>
