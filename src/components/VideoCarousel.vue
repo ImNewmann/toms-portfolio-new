@@ -2,12 +2,7 @@
     <div class="video-carousel" :data-orientation="orientation">
         <swiper ref="swiper" class="swiper" :options="swiperOptions">
             <swiper-slide
-                :class="[
-                    'video-carousel-slide',
-                    videoPreviewData.length && videoPreviewData[index].show
-                        ? 'video-carousel-slide--preview-reveal'
-                        : '',
-                ]"
+                :class="['video-carousel-slide', videoPreviewData.length && videoPreviewData[index].show ? 'video-carousel-slide--preview-reveal' : '']"
                 v-for="(post, index) in posts"
                 :key="index"
                 :data-preview-loaded="videoPreviewData.length && videoPreviewData[index].loaded"
@@ -15,12 +10,7 @@
             >
                 <router-link :to="`/${post.slug}`">
                     <div v-if="breakpoint === DESKTOP">
-                        <div
-                            class="video-carousel-slide__overlay"
-                            v-html="post.title.rendered"
-                            @mouseover="() => handleMouseOver(index)"
-                            @mouseleave="() => handleMouseLeave(index)"
-                        ></div>
+                        <div class="video-carousel-slide__overlay" v-html="post.title.rendered" @mouseover="() => handleMouseOver(index)" @mouseleave="() => handleMouseLeave(index)"></div>
                         <div class="video-carousel-slide__preview">
                             <VideoPreview
                                 v-if="videoPreviewData.length && videoPreviewData[index].initLoad"
@@ -34,11 +24,7 @@
                         </div>
                     </div>
 
-                    <img
-                        class="video-carousel-slide__thumbnail"
-                        :src="getFeaturedImage(post)"
-                        :alt="post.title.rendered"
-                    />
+                    <img class="video-carousel-slide__thumbnail" :src="getFeaturedImage(post)" :alt="post.title.rendered" />
                 </router-link>
             </swiper-slide>
             <div class="swiper-button swiper-button-next swiper-button-white" slot="button-next"></div>
@@ -125,11 +111,12 @@ export default {
         },
 
         getFeaturedImage(post) {
-            const oldFeatured = post.acf.featured_images.image.image.url;
+            // const oldFeatured = post.acf.featured_images.image.image.url;
 
-            if (!post.acf.featured_image) return oldFeatured;
+            // if (!post.acf.featured_image) return oldFeatured;
 
             const newFeatured = post.acf.featured_image.url;
+            console.log(post.acf);
 
             return newFeatured;
         },
