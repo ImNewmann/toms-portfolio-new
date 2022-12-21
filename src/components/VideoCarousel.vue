@@ -111,14 +111,8 @@ export default {
         },
 
         getFeaturedImage(post) {
-            // const oldFeatured = post.acf.featured_images.image.image.url;
-
-            // if (!post.acf.featured_image) return oldFeatured;
-
-            const newFeatured = post.acf.featured_image.url;
-            console.log(post.acf);
-
-            return newFeatured;
+            if (!post.acf.featured_image) return;
+            return post.acf.featured_image.url;
         },
 
         handlePortraitVideos(onHover, orientation, index) {
