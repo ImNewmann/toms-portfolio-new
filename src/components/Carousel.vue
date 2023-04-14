@@ -73,8 +73,7 @@ export default {
 <style lang="scss">
 .carousel {
     height: 300px;
-    background-color: $white;
-
+    background-color: rgba(26, 26, 26, 1);
     @include breakpoint(tablet) {
         height: 420px;
     }
